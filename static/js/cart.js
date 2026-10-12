@@ -179,8 +179,8 @@
           '<div class="cart-guarantee-card">' +
             '<span class="guar-icon">🛡️</span>' +
             '<div>' +
-              '<strong>Cam kết sinh viên · Bảo hành 7 ngày:</strong>' +
-              '<p class="muted small">Kiểm tra máy chạy thử code ổn định tại sảnh mới gửi phí. Nếu lỗi cũ tái phát trong 7 ngày, FixIT hỗ trợ sửa lại hoàn toàn miễn phí hoặc hoàn tiền 100%.</p>' +
+              '<strong>Cam kết đồng hành · Hỗ trợ kiểm tra lại 7 ngày:</strong>' +
+              '<p class="muted small">Tự tay bạn chạy thử code và kiểm tra máy ổn định tại sảnh trước khi gửi phí. Nếu cùng lỗi đó phát sinh lại trong 7 ngày, tụi mình sẽ tiếp tục hỗ trợ kiểm tra lại miễn phí.</p>' +
             '</div>' +
           '</div>' +
         '</div>' +
@@ -294,7 +294,7 @@
 
                 '<!-- Cash Info Box -->' +
                 '<div id="pay-cash-box" class="pay-method-preview-card">' +
-                  '<p class="small muted mb-0">🛡️ <b>An tâm sinh viên:</b> Kỹ thuật viên FixIT sẽ kiểm tra máy trực tiếp, hướng dẫn bạn chạy thử code thành công tại sảnh rồi mới nhận phí.</p>' +
+                  '<p class="small muted mb-0">🛡️ <b>Trực tiếp tại sảnh:</b> Bạn trực tiếp quan sát thao tác, tự tay chạy thử chương trình thành công trước khi thanh toán phí sinh viên.</p>' +
                 '</div>' +
 
                 '<!-- VietQR Simulation Box -->' +
@@ -477,7 +477,7 @@
             '<div class="roadmap-steps">' +
               '<div class="r-step"><span class="r-num">1</span> Kỹ thuật viên chuẩn bị công cụ & bộ cài</div>' +
               '<div class="r-step"><span class="r-num">2</span> Gặp trực tiếp tại sảnh trường theo giờ hẹn</div>' +
-              '<div class="r-step"><span class="r-num">3</span> Kiểm tra máy chạy tốt mới gửi phí (Bảo hành 7 ngày)</div>' +
+              '<div class="r-step"><span class="r-num">3</span> Bạn tự kiểm tra máy chạy tốt mới gửi phí (Hỗ trợ kiểm tra lại 7 ngày)</div>' +
             '</div>' +
           '</div>' +
         '</div>' +

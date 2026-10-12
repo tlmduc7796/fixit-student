@@ -2,7 +2,7 @@
 <article class="card service-card"
   data-cat="{{ $p.Params.category }}"
   data-price="{{ $p.Params.price }}"
-  data-name="{{ $p.Title | lower }}"
+  data-name="{{ $p.Title | lower }} {{ $p.Params.name_en | lower }}"
   data-tags="{{ delimit $p.Params.tags " " | lower }}">
   <a class="card-img" href="{{ $p.RelPermalink }}" aria-label="Xem chi tiết dịch vụ {{ $p.Title }}">
     <img src="{{ $p.Params.image | relURL }}" alt="Minh hoạ dịch vụ {{ $p.Title }}" loading="lazy" width="640" height="400">
@@ -10,6 +10,9 @@
   </a>
   <div class="card-body">
     <h3 class="service-card-title"><a href="{{ $p.RelPermalink }}">{{ $p.Params.icon }} {{ $p.Title }}</a></h3>
+    {{ with $p.Params.name_en }}
+    <span class="service-card-en">{{ . }}</span>
+    {{ end }}
     <p class="service-card-desc">{{ $p.Params.short }}</p>
     <div class="card-meta">
       <div class="price-wrap">

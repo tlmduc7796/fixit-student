@@ -64,9 +64,9 @@
     var items = o.result.map(function (id) { return services[id]; }).filter(Boolean);
     var sum = items.reduce(function (s, x) { return s + x.price; }, 0);
     var html = '<div class="fix-result-header">' +
-      '<span class="result-check-badge">✓ CHẨN ĐOÁN HOÀN TẤT</span>' +
-      '<h2 class="fix-result-title">FixIT đề xuất cho bạn</h2>' +
-      '<p class="muted">Dựa trên tình trạng: <b>' + o.label + '</b></p>' +
+      '<span class="result-check-badge">✓ GỢI Ý DỊCH VỤ PHÙ HỢP</span>' +
+      '<h2 class="fix-result-title">Tụi mình gợi ý cho bạn</h2>' +
+      '<p class="muted">Dựa trên hiện tượng bạn chọn: <b>' + o.label + '</b></p>' +
       '</div>' +
       '<div class="result-list">' +
       items.map(function (s) {
@@ -80,8 +80,8 @@
             '<p class="price">' + fmt(s.price) + '</p>' +
           '</div>' +
           '<div class="fix-card-actions">' +
-            '<a class="btn btn-ghost btn-sm" href="' + s.url + '">Chi tiết</a>' +
-            '<button class="btn add-to-cart btn-sm" type="button" data-id="' + s.id + '" data-name="' + s.name + '" data-price="' + s.price + '">Thêm vào giỏ</button>' +
+            '<a class="btn btn-ghost btn-sm" href="' + s.url + '">Xem chi tiết</a>' +
+            '<button class="btn add-to-cart btn-sm" type="button" data-id="' + s.id + '" data-name="' + s.name + '" data-price="' + s.price + '">Thêm vào hẹn</button>' +
           '</div>' +
         '</div>';
       }).join('') + '</div>';
@@ -89,21 +89,21 @@
     if (items.length > 1) {
       html += '<div class="fix-total-box">' +
         '<span>Tổng mức phí dự kiến: <b class="price">' + fmt(sum) + '</b></span>' +
-        '<button class="btn-glow-pill btn-sm" id="add-all" type="button"><span>Thêm tất cả vào giỏ (' + fmt(sum) + ')</span></button>' +
+        '<button class="btn-glow-pill btn-sm" id="add-all" type="button"><span>Thêm tất cả vào danh sách hẹn (' + fmt(sum) + ')</span></button>' +
       '</div>';
     }
     if (sum > 100000 && services['student-pack']) {
       html += '<div class="fix-pack-tip">' +
-        '💡 <b>Gợi ý tiết kiệm:</b> Bạn đang chọn nhiều dịch vụ, gói <a href="' + services['student-pack'].url + '">Student Pack 149.000đ</a> bao trọn 6 dịch vụ cần nhất có thể giúp bạn tiết kiệm tới 55.000đ.' +
+        '💡 <b>Gợi ý tiết kiệm:</b> Bạn đang chọn nhiều dịch vụ, gói <a href="' + services['student-pack'].url + '">Student Pack 149.000đ</a> bao gồm 6 dịch vụ thường dùng có thể giúp bạn tiết kiệm 55.000đ.' +
       '</div>';
     }
-    html += '<div class="fix-restart-row"><button class="btn btn-ghost" id="restart" type="button">↺ Chẩn đoán lại từ đầu</button></div>';
+    html += '<div class="fix-restart-row"><button class="btn btn-ghost" id="restart" type="button">↺ Bắt đầu tìm kiếm lại</button></div>';
 
     box.innerHTML = html;
     var all = document.getElementById('add-all');
     if (all) all.addEventListener('click', function () {
       items.forEach(function (s) { FixitCart.add({ id: s.id, name: s.name, price: s.price }); });
-      FixitCart.toast('Đã thêm ' + items.length + ' dịch vụ vào giỏ hàng');
+      FixitCart.toast('Đã thêm ' + items.length + ' dịch vụ vào danh sách hẹn');
     });
     document.getElementById('restart').addEventListener('click', function () { path = []; show('start'); });
   }
@@ -132,7 +132,7 @@
       }).join('') +
       '</div>' +
       '<div class="quiz-action-bar">' +
-        '<button class="btn-glow-pill" id="quiz-go" type="button"><span>Phân tích tình trạng máy</span></button>' +
+        '<button class="btn-glow-pill" id="quiz-go" type="button"><span>Xem gợi ý đánh giá</span></button>' +
       '</div>' +
       '<div id="quiz-out" class="quiz-result-area" aria-live="polite"></div>';
 
@@ -142,20 +142,20 @@
       var s = services['laptop-health'];
 
       var statusClass = n <= 1 ? 'status-safe' : n <= 3 ? 'status-warn' : 'status-danger';
-      var title = n <= 1 ? 'Laptop của bạn đang hoạt động khá tốt (' + n + '/5 dấu hiệu)'
-                : n <= 3 ? 'Laptop có ' + n + '/5 dấu hiệu quá tải, cần được tối ưu'
-                : 'Cảnh báo: Laptop đang gặp ' + n + '/5 dấu hiệu xuống cấp nghiêm trọng';
-      var advice = n <= 1 ? 'Chưa cần can thiệp sâu, bạn chỉ cần định kỳ dọn rác trình duyệt và cập nhật Windows.'
-                 : n <= 3 ? 'Máy đang bắt đầu bị nghẽn tài nguyên do rác hệ thống hoặc keo tản nhiệt đã khô. Nên kiểm tra bảo dưỡng sớm.'
-                 : 'Nguy cơ cao bị hỏng phần cứng hoặc mất dữ liệu học tập. Khuyến nghị kiểm tra chuyên sâu ngay trong tuần này.';
+      var title = n <= 1 ? 'Laptop của bạn hiện ở mức khá ổn định (' + n + '/5 hiện tượng)'
+                : n <= 3 ? 'Laptop có ' + n + '/5 hiện tượng cần lưu ý dọn dẹp'
+                : 'Laptop có ' + n + '/5 hiện tượng quá tải rõ rệt';
+      var advice = n <= 1 ? 'Chưa cần can thiệp sâu. Bạn chỉ cần định kỳ dọn file rác tạm thời và cập nhật phần mềm học tập.'
+                 : n <= 3 ? 'Máy bắt đầu bị nghẽn ổ đĩa hoặc quá nhiều tác vụ chạy ngầm. Bạn có thể hẹn tụi mình tại sảnh trường để kiểm tra và dọn dẹp lại hệ thống.'
+                 : 'Nhiều khả năng máy đang bị đầy dung lượng, nhiệt độ cao hoặc ổ đĩa có vấn đề. Khuyến nghị bạn sao lưu bài tập lên cloud trước, sau đó mang máy để tụi mình kiểm tra chi tiết.';
 
       out.innerHTML = '<div class="quiz-result-card ' + statusClass + '">' +
         '<div class="quiz-res-header">' +
-          '<span class="score-badge">' + n + '/5 TRIỆU CHỨNG</span>' +
+          '<span class="score-badge">' + n + '/5 HIỆN TƯỢNG' + '</span>' +
           '<h4>' + title + '</h4>' +
         '</div>' +
         '<p class="quiz-res-advice">' + advice + '</p>' +
-        (n >= 2 && s ? '<div class="quiz-res-cta"><a class="btn-glow-pill" href="' + s.url + '"><span>Đặt dịch vụ ' + s.name + ' (' + fmt(s.price) + ')</span></a></div>' : '') +
+        (n >= 2 && s ? '<div class="quiz-res-cta"><a class="btn-glow-pill" href="' + s.url + '"><span>Xem dịch vụ ' + s.name + ' (' + fmt(s.price) + ')</span></a></div>' : '') +
       '</div>';
     });
   }

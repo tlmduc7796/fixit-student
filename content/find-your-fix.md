@@ -1,5 +1,5 @@
 ---
-title: "Find your fix"
+title: "Tìm lỗi máy tính"
 layout: "fix"
-short: "Không cần biết lỗi tên gì. Chọn vấn đề, FixIT gợi ý đúng dịch vụ."
+short: "Không cần biết chính xác thuật ngữ kỹ thuật. Trả lời vài câu hỏi để nhận gợi ý dịch vụ và hướng xử lý phù hợp."
 ---

@@ -14,6 +14,9 @@
       </div>
       <div class="detail-info">
         <h1 class="detail-title">{{ .Params.icon }} {{ .Title }}</h1>
+        {{ with .Params.name_en }}
+        <div class="detail-technical-tag">Tên kỹ thuật: <code>{{ . }}</code></div>
+        {{ end }}
         <p class="lead muted detail-short">{{ .Params.short }}</p>
 
         <div class="detail-meta-box">
@@ -22,7 +25,7 @@
             <span class="price-large">{{ .Params.price | lang.FormatNumber 0 }}đ</span>
           </div>
           <div class="duration-wrap">
-            <span class="meta-label">THỜI GIAN XỬ LÝ</span>
+            <span class="meta-label">THỜI GIAN XỬ LÝ DỰ KIẾN</span>
             <span class="duration-badge">⏱ {{ .Params.duration }}</span>
           </div>
         </div>
@@ -30,15 +33,15 @@
         <div class="detail-actions">
           <button class="btn-glow-pill add-to-cart" type="button"
             data-id="{{ .Params.id }}" data-name="{{ .Title }}" data-price="{{ .Params.price }}">
-            <span>🛒 Thêm vào giỏ ngay</span>
+            <span>🛒 Thêm vào danh sách hẹn</span>
           </button>
-          <a class="btn-glass-pill" href="{{ "cart/" | relURL }}">Xem giỏ hàng →</a>
+          <a class="btn-glass-pill" href="{{ "cart/" | relURL }}">Xem giỏ / Hẹn lịch →</a>
         </div>
 
         <div class="detail-guarantees">
-          <span>⚡ Không giữ máy qua đêm</span>
-          <span>🛡️ Bảo hành 7 ngày miễn phí</span>
-          <span>☕ Hẹn trực tiếp tại sảnh</span>
+          <span>⚡ Báo giá trước khi làm</span>
+          <span>🛡️ Hỗ trợ kiểm tra lại 7 ngày</span>
+          <span>☕ Hẹn gặp trực tiếp tại sảnh</span>
         </div>
       </div>
     </div>
@@ -46,32 +49,36 @@
 
   <div class="wrap narrow">
     <div class="service-content-card reveal">
-      <h2 class="content-heading">Chi tiết dịch vụ & Quy trình</h2>
+      <h2 class="content-heading">Nội dung công việc & Phạm vi bàn giao</h2>
       <div class="prose">
         {{ .Content }}
       </div>
     </div>
   </div>
 
-  {{ with .Params.reviews }}
+  {{ with .Params.cases }}
   <div class="wrap narrow">
-    <div class="reviews-section reveal">
+    <div class="cases-section reveal">
       <div class="section-center-head">
-        <p class="eyebrow eyebrow-center">PHẢN HỒI THỰC TẾ</p>
-        <h2 class="section-title">ĐÁNH GIÁ TỪ SINH VIÊN</h2>
-        <p class="section-subtitle">Phản hồi thực tế từ các bạn sinh viên đã trực tiếp trải nghiệm dịch vụ tại sảnh trường.</p>
+        <p class="eyebrow eyebrow-center">TRƯỜNG HỢP THỰC TẾ</p>
+        <h2 class="section-title">TÌNH HUỐNG XỬ LÝ THỰC TẾ</h2>
+        <p class="section-subtitle">Tóm tắt các lỗi thực tế tụi mình thường gặp và cách kiểm tra nghiệm thu cùng bạn.</p>
       </div>
-      <div class="reviews-grid">
+      <div class="cases-grid">
         {{ range . }}
-        <div class="review-glass-card">
-          <div class="review-head">
-            <div class="review-avatar">{{ substr .name 0 1 }}</div>
-            <div>
-              <h4 class="review-author">{{ .name }}</h4>
-              <div class="stars" aria-label="{{ .stars }} trên 5 sao">{{ strings.Repeat .stars "★" }}{{ strings.Repeat (sub 5 .stars) "☆" }}</div>
-            </div>
+        <div class="case-card">
+          <div class="case-item">
+            <span class="case-label">⚠️ Hiện tượng:</span>
+            <p class="case-val">{{ .symptom }}</p>
           </div>
-          <blockquote class="review-quote">"{{ .text }}"</blockquote>
+          <div class="case-item">
+            <span class="case-label">🛠️ Hướng xử lý:</span>
+            <p class="case-val">{{ .action }}</p>
+          </div>
+          <div class="case-item case-result">
+            <span class="case-label">✅ Bàn giao & kiểm tra:</span>
+            <p class="case-val">{{ .result }}</p>
+          </div>
         </div>
         {{ end }}
       </div>

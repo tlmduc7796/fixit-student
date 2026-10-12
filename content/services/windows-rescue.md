@@ -1,5 +1,6 @@
 ---
-title: "Windows Rescue"
+title: "Cài đặt / sửa lỗi Windows"
+name_en: "Windows Rescue"
 id: "windows-rescue"
 weight: 1
 category: "software"
@@ -7,22 +8,31 @@ price: 79000
 duration: "60–90 phút"
 image: "/img/windows-rescue.svg"
 icon: "🪟"
-short: "Cứu laptop Windows bị treo, báo lỗi, không lên hình hoặc cần cài lại sạch sẽ."
-tags: ["windows", "cài win", "lỗi", "treo", "bsod", "driver"]
+short: "Kiểm tra nguyên nhân máy treo, lỗi màn hình xanh hoặc cài đặt lại hệ điều hành sạch sẽ."
+tags: ["windows", "cài win", "lỗi", "treo", "bsod", "driver", "windows rescue"]
 inpack: false
-reviews:
-  - { name: "Bạn A, năm 1", stars: 5, text: "Máy cứ xanh màn hình mỗi tối, được fix xong chạy mượt luôn." }
-  - { name: "Bạn B, năm 2", stars: 4, text: "Cài lại Windows kèm driver đầy đủ, hẹn ở sảnh trường rất tiện." }
+cases:
+  - symptom: "Laptop bị màn hình xanh khi mở máy hoặc tự khởi động lại bất ngờ"
+    action: "Kiểm tra file dump sự cố, gỡ driver xung đột và cập nhật bản vá tương thích"
+    result: "Máy khởi động bình thường, chạy ổn định không còn hiện tượng sập nguồn"
+  - symptom: "Hệ thống chậm chạp sau nhiều năm, ổ đĩa C báo đầy dung lượng"
+    action: "Hướng dẫn sao lưu tài liệu, cài đặt lại Windows bản sạch và cài đủ driver chính hãng"
+    result: "Thời gian khởi động giảm rõ rệt, hệ thống vận hành mượt mà phục vụ học kỳ mới"
 ---
-### Bạn sẽ nhận được
-- Chẩn đoán nguyên nhân lỗi Windows (treo, màn hình xanh, update lỗi, thiếu driver)
-- Sửa lỗi hoặc cài lại / cấu hình hệ điều hành theo nhu cầu học tập
-- Cài driver cần thiết, bật cập nhật và bảo mật cơ bản
-- Hướng dẫn 3 mẹo để máy không dễ lỗi lại
 
-### Phù hợp khi
-- Máy không vào được Windows hoặc khởi động rất chậm
-- Hay gặp màn hình xanh, Windows Update lỗi mãi
-- Muốn cài lại Windows sạch trước khi vào học kỳ mới
+### Trường hợp phù hợp
+- Máy khởi động rất chậm, hay bị đơ hoặc xuất hiện màn hình xanh (BSOD).
+- Windows Update báo lỗi liên tục, không nhận thiết bị ngoại vi (thiếu driver Wi-Fi, âm thanh, touchpad).
+- Bạn muốn cài lại Windows sạch sẽ trước khi bước vào kỳ học mới hoặc kỳ đồ án.
 
-> Nên sao lưu dữ liệu trước. Cần giúp? Xem **Data Backup**.
+### Quy trình tụi mình thực hiện
+1. **Kiểm tra ban đầu cùng bạn:** Khảo sát tình trạng máy, kiểm tra sức khỏe ổ cứng trước khi thao tác.
+2. **Nhắc nhở an toàn dữ liệu:** Hướng dẫn bạn sao lưu bài tập và tài liệu quan trọng sang ổ đĩa khác hoặc USB/Cloud.
+3. **Xử lý sự cố:** Khắc phục lỗi driver/hệ điều hành, hoặc cài đặt bản Windows sạch theo nhu cầu học tập.
+4. **Cấu hình & Tối ưu:** Cài đặt driver cần thiết, tắt ứng dụng rác khởi động cùng hệ thống.
+5. **Nghiệm thu tại chỗ:** Bạn tự đăng nhập tài khoản cá nhân, kiểm tra âm thanh, Wi-Fi, độ mượt của máy trước khi kết thúc.
+
+### Giới hạn & Lưu ý quan trọng
+- ⚠️ **Dữ liệu cá nhân:** Tụi mình luôn nhắc bạn sao lưu trước. Bạn sẽ tự nhập mật khẩu tài khoản và quản lý tệp tin của mình.
+- ⚠️ **Phần cứng:** Dịch vụ chỉ xử lý phần mềm hệ điều hành. Nếu ổ cứng bị bad sector vật lý hoặc mainboard lỗi nguồn, tụi mình sẽ tư vấn bạn mang đến trung tâm bảo hành phần cứng chuyên sâu.
+- **Hỗ trợ 7 ngày:** Nếu gặp lại lỗi cấu hình hệ thống cũ trong vòng 7 ngày, tụi mình hỗ trợ kiểm tra lại tại trường.
