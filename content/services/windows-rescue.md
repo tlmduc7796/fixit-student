@@ -1,7 +1,7 @@
 ---
 title: "Windows Rescue"
 weight: 10
-price: 79000
+price: 39000
 duration: "60 – 90 phút"
 group: "software"
 groupLabel: "Phần mềm"

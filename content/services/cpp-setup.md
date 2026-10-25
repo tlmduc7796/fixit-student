@@ -1,7 +1,7 @@
 ---
 title: "C/C++ Development Setup"
 weight: 30
-price: 39000
+price: 29000
 duration: "45 – 60 phút"
 group: "dev"
 groupLabel: "Lập trình & Môi trường"

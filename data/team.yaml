@@ -2,7 +2,6 @@
 # Ảnh đặt trong static/images/team/ (đuôi jpg, jpeg, png hoặc webp):
 #   - nhom.jpg : ảnh cả nhóm
 #   - <id>.jpg : ảnh từng thành viên, <id> trùng với trường `id` bên dưới (a, b, c, d, e)
-# Chỗ trong dấu [ ] là chỗ mẫu, hãy thay bằng thông tin thật của nhóm.
 
 story:
   title: "Câu chuyện của nhóm"
@@ -24,34 +23,28 @@ mission:
 
 team:
   title: "Đội ngũ"
-  note: "Phần giới thiệu cá nhân của từng thành viên sẽ được bổ sung."
 
 members:
   - id: a
     name: "Nguyễn Duy Phúc"
     role: "Nhóm trưởng"
     task: "Thiết lập Hugo, deploy và quản lý repo."
-    bio: "[1 đến 2 câu giới thiệu bản thân.]"
   - id: b
     name: "Nguyễn Nhất Minh Quân"
     role: "Giao diện"
     task: "Layout, CSS, responsive và logo."
-    bio: "[1 đến 2 câu giới thiệu bản thân.]"
   - id: c
     name: "Trần Thái Nhân"
     role: "Công cụ chẩn đoán"
     task: "Trang Find your fix."
-    bio: "[1 đến 2 câu giới thiệu bản thân.]"
   - id: d
     name: "Nguyễn Cao Bản"
     role: "Giỏ hàng và ưu đãi"
     task: "Giỏ hàng, mã giảm giá và Student Pack."
-    bio: "[1 đến 2 câu giới thiệu bản thân.]"
   - id: e
     name: "Trần Lê Minh Đức"
     role: "Nội dung"
     task: "Nội dung dịch vụ, About, Contact và hình ảnh."
-    bio: "[1 đến 2 câu giới thiệu bản thân.]"
 
 ai:
   title: "Chúng mình dùng AI như thế nào"

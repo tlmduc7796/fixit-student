@@ -4,7 +4,7 @@ tone: "mix"
 layout: "pack"
 description: "Gói tổng hợp 6 dịch vụ thiết yếu cho sinh viên IT trong kỳ đồ án."
 lead: "Gói tổng hợp 6 giải pháp thiết yếu cho sinh viên IT, dành cho kỳ đồ án."
-price: 149000
+price: 129000
 includes:
   - vscode-setup
   - python-setup

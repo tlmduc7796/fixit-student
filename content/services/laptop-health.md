@@ -1,7 +1,7 @@
 ---
 title: "Laptop Health Check"
 weight: 60
-price: 49000
+price: 39000
 duration: "30 – 40 phút"
 group: "hardware"
 groupLabel: "Phần cứng & Máy tính"
