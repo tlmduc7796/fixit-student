@@ -7,6 +7,9 @@
 {{ end }}
 {{ $price := .Params.price }}
 {{ $saved := sub $sum $price }}
+{{ $pct := math.Round (div (mul $saved 100.0) $sum) | int }}
+{{ $pages := slice }}
+{{ range .Params.includes }}{{ $pages = $pages | append (site.GetPage (printf "/services/%s" .)) }}{{ end }}
 
 <section class="showcase showcase--flat band--dark on-dark" aria-label="Giá Student Pack">
   <div class="container showcase-inner">
@@ -23,13 +26,94 @@
       {{ if $found }}
         {{ partial "photo.html" (dict "stem" "images/student-pack" "alt" "Student Pack: gói 6 giải pháp thiết yếu cho sinh viên IT" "class" "media--wide media--rounded") }}
       {{ else }}
-        <dl class="stat-list">
-          <div class="stat-row"><dt>Số dịch vụ trong gói</dt><dd>{{ len .Params.includes }}</dd></div>
-          <div class="stat-row"><dt>Bạn tiết kiệm</dt><dd>{{ partial "vnd.html" $saved }}</dd></div>
-          <div class="stat-row"><dt>Giảm so với đặt lẻ</dt><dd>{{ math.Round (div (mul $saved 100.0) $sum) | int }}%</dd></div>
-        </dl>
+        <div class="pack-collage" aria-hidden="true">
+          {{ range $i, $n := slice 0 1 3 }}
+            {{ $s := index $pages $n }}
+            <figure class="pack-collage-item pack-collage-item--{{ add $i 1 }}"><img src="{{ partial "service-image.html" $s | relURL }}" alt="" loading="lazy" decoding="async"></figure>
+          {{ end }}
+        </div>
       {{ end }}
     </div>
+  </div>
+  <div class="container">
+    <dl class="pack-stats reveal">
+      <div class="pack-stat"><dt>dịch vụ thiết yếu</dt><dd>{{ printf "%02d" (len .Params.includes) }}</dd></div>
+      <div class="pack-stat"><dt>tiết kiệm so với đặt lẻ</dt><dd>{{ $pct }}%</dd></div>
+      <div class="pack-stat"><dt>ngày bảo hành mỗi lần sửa</dt><dd>07</dd></div>
+      <div class="pack-stat"><dt>buổi hướng dẫn Git cơ bản</dt><dd>01</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section" id="pack-inside" aria-labelledby="inside-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Bên trong gói</p>
+      <h2 id="inside-title">Sáu dịch vụ, một lần đặt</h2>
+      <p class="section-lead">Mỗi dịch vụ bên dưới đã nằm trong gói. Giá lẻ chỉ để bạn so sánh.</p>
+    </div>
+    <div class="pack-grid">
+      {{ range $i, $s := $pages }}
+      <article class="card card--link pack-card reveal">
+        {{ partial "service-figure.html" (dict "page" $s "wide" false) }}
+        <p class="card-meta"><span class="pack-card-no">{{ printf "%02d" (add $i 1) }}</span> <span class="tag">Đã bao gồm</span> <span>{{ $s.Params.duration }}</span></p>
+        <h3 class="card-title"><a class="card-link" href="{{ $s.RelPermalink }}">{{ $s.Title }}</a></h3>
+        <p class="card-text">{{ $s.Params.summary }}</p>
+        <p class="card-price">Giá lẻ {{ partial "vnd.html" $s.Params.price }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+<section class="section section--border" aria-labelledby="groups-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Gói giúp bạn làm gì</p>
+      <h2 id="groups-title">Hai việc chính trong kỳ đồ án</h2>
+    </div>
+    <div class="pack-row split-even">
+      <div class="pack-duo reveal">
+        {{ range $i, $n := slice 0 1 2 }}{{ $s := index $pages $n }}
+        <figure class="pack-duo-item pack-duo-item--{{ add $i 1 }}"><img src="{{ partial "service-image.html" $s | relURL }}" alt="" loading="lazy" decoding="async"></figure>
+        {{ end }}
+      </div>
+      <div class="reveal">
+        <h3 class="h2-sm">Chuẩn bị nơi viết code</h3>
+        <p class="section-lead">VS Code, Python và C/C++ được cài, cấu hình và chạy thử chương trình đầu tiên ngay trên máy của bạn, để bắt đầu làm đồ án mà không mất buổi nào vì lỗi cài đặt.</p>
+        <ul class="check-list">
+          {{ range $n := slice 0 1 2 }}{{ $s := index $pages $n }}<li><a class="text-link" href="{{ $s.RelPermalink }}">{{ $s.Title }}</a></li>{{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="pack-row pack-row--rev split-even">
+      <div class="pack-duo reveal">
+        {{ range $i, $n := slice 3 4 5 }}{{ $s := index $pages $n }}
+        <figure class="pack-duo-item pack-duo-item--{{ add $i 1 }}"><img src="{{ partial "service-image.html" $s | relURL }}" alt="" loading="lazy" decoding="async"></figure>
+        {{ end }}
+      </div>
+      <div class="reveal">
+        <h3 class="h2-sm">Giữ code và dữ liệu an toàn</h3>
+        <p class="section-lead">Git & GitHub để nộp bài và làm việc nhóm, Laptop Health Check để biết máy còn khỏe không, và Data Backup để bài tập luôn có thêm một bản sao.</p>
+        <ul class="check-list">
+          {{ range $n := slice 3 4 5 }}{{ $s := index $pages $n }}<li><a class="text-link" href="{{ $s.RelPermalink }}">{{ $s.Title }}</a></li>{{ end }}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--border" aria-labelledby="steps-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Nhận gói</p>
+      <h2 id="steps-title">Ba bước để nhận gói</h2>
+    </div>
+    <ol class="values">
+      <li class="value reveal"><h3>Đặt gói</h3><p>Thêm Student Pack vào giỏ hàng và xác nhận đơn. Giỏ hàng và thanh toán trên web chỉ là mô phỏng.</p></li>
+      <li class="value reveal"><h3>Hẹn gặp</h3><p>Chọn khung giờ và gặp trực tiếp tại CS1 hoặc CS2, hẹn trước qua Zalo.</p></li>
+      <li class="value reveal"><h3>Nhận máy đã setup</h3><p>Sáu dịch vụ được làm trong kỳ, kèm bảo hành 7 ngày cho mỗi lần sửa.</p></li>
+    </ol>
   </div>
 </section>
 
@@ -79,6 +163,23 @@
         <p class="panel-foot"><a class="text-link" href="{{ "cart/" | relURL }}">Xem giỏ hàng</a></p>
       </div>
     </aside>
+  </div>
+</section>
+
+<section class="band band--dark aurora on-dark" aria-labelledby="pack-cta-title">
+  <div class="container band-inner">
+    <div class="reveal">
+      <p class="eyebrow">Student Pack</p>
+      <h2 class="display-sm" id="pack-cta-title">Một gói cho cả kỳ đồ án</h2>
+      <p class="lead">{{ partial "vnd.html" $price }} cho sáu dịch vụ thiết yếu, tiết kiệm {{ partial "vnd.html" $saved }} so với đặt lẻ.</p>
+      <div class="pack-cta-actions">
+        <button class="btn btn--primary" type="button" data-add-to-cart data-id="student-pack" data-title="Student Pack" data-price="{{ $price }}">Đặt mua Student Pack</button>
+        <button class="btn btn--secondary" type="button" data-open-chat data-chat-question="Student Pack gồm những gì?">Hỏi trợ lý về gói</button>
+      </div>
+    </div>
+    <div class="pack-strip reveal" aria-hidden="true">
+      {{ range $pages }}<figure class="pack-strip-item"><img src="{{ partial "service-image.html" . | relURL }}" alt="" loading="lazy" decoding="async"></figure>{{ end }}
+    </div>
   </div>
 </section>
 {{ end }}

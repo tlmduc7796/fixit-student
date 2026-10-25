@@ -400,6 +400,21 @@
         announce('Đã ghi nhận yêu cầu mẫu, mã REQ-' + s + '.');
       });
     }
+
+    /* Thẻ chọn loại sự cố và nút chọn cơ sở: chọn sẵn mục tương ứng trong biểu mẫu rồi cuộn tới biểu mẫu */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-topic], [data-place]'), function (b) {
+      b.addEventListener('click', function () {
+        if (!cform) return;
+        var isTopic = b.hasAttribute('data-topic');
+        var sel = isTopic ? cform.elements.topic : cform.elements.place;
+        var want = b.getAttribute(isTopic ? 'data-topic' : 'data-place');
+        Array.prototype.forEach.call(sel.options, function (o) { if (o.text === want) sel.value = o.value; });
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var target = document.getElementById('request') || cform;
+        target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        window.setTimeout(function () { cform.elements.name.focus({ preventScroll: true }); }, reduce ? 0 : 500);
+      });
+    });
   });
 })();
 

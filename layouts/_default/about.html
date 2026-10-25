@@ -1,88 +1,189 @@
 {{ define "main" }}
-{{ partial "page-hero.html" (dict "title" "Về FixIT Student" "lead" .Params.lead "eyebrow" "About") }}
 {{ $t := site.Data.team }}
+{{ $n := len $t.members }}
+{{ $icons := slice "↗" "</>" "₫" }}
 
-<section class="section">
-  <div class="container split-even">
+{{/* ===== Hero ===== */}}
+<section class="page-hero ab-hero aurora on-dark" aria-labelledby="about-title">
+  <div class="container ab-hero-grid">
+    <div class="ab-hero-copy">
+      <p class="eyebrow">Về FixIT Student</p>
+      <h1 class="display" id="about-title">Cũng là sinh viên<br>Nên chúng mình<br>hiểu bạn</h1>
+      <p class="lead">{{ .Params.lead }} Chúng mình từng ngồi trước những dòng báo lỗi lúc deadline đang đến gần, nên biết một người bạn cùng gỡ rối có ích thế nào.</p>
+      <div class="ab-actions">
+        <a class="btn btn--primary" href="#meet-the-team">Gặp đội ngũ FixIT ↗</a>
+        <a class="btn btn--secondary" href="#our-story">Câu chuyện của chúng mình ↓</a>
+      </div>
+      <ul class="ab-tags">
+        <li><strong>Từ sinh viên IT</strong><span>Dành cho những ngày học tập tốt hơn</span></li>
+        <li><strong>Mỗi người một thế mạnh</strong><span>Cùng một tinh thần FixIT</span></li>
+      </ul>
+    </div>
+
+    <div class="ab-crew reveal">
+      <ul class="ab-crew-list">
+        {{ range $i, $m := $t.members }}{{ with $m }}
+        <li>
+          <a href="#member-{{ .id }}" aria-label="Xem phần giới thiệu của {{ .name }}">
+            <span class="ab-avatar">{{ partial "photo.html" (dict "stem" (printf "images/team/%s" .id) "alt" (printf "Ảnh của %s" .name) "class" "media--portrait") }}</span>
+            <span class="ab-crew-no">{{ printf "%02d" (add $i 1) }}</span>
+            <span class="ab-crew-role">{{ .role }}</span>
+          </a>
+        </li>
+        {{ end }}{{ end }}
+      </ul>
+      <p class="ab-crew-stat"><strong>{{ printf "%02d" $n }}</strong> người bạn cùng gỡ rối</p>
+    </div>
+  </div>
+
+  <nav class="container ab-toc" aria-label="Mục lục trang">
+    <a href="#our-story"><span>01</span> Câu chuyện</a>
+    <a href="#our-values"><span>02</span> Tinh thần FixIT</a>
+    <a href="#meet-the-team"><span>03</span> Đội ngũ</a>
+    <a href="#our-process"><span>04</span> Cách làm việc</a>
+  </nav>
+</section>
+
+{{/* ===== 01 Câu chuyện ===== */}}
+<section class="section ab-section" id="our-story" aria-labelledby="story-title">
+  <div class="container ab-story">
     <div class="reveal">
-      <h2 class="display-sm">{{ $t.story.title }}</h2>
+      <p class="ab-label"><span>01</span> / Đi từ một điều quen thuộc</p>
+      <h2 class="display-sm" id="story-title">Từng loay hoay<br>Giờ cùng nhau gỡ rối</h2>
       <div class="prose">
         {{ range $t.story.paragraphs }}<p>{{ . }}</p>{{ end }}
       </div>
+      <p><a class="text-link" href="{{ "services/" | relURL }}">Khám phá những việc FixIT có thể giúp ↗</a></p>
     </div>
-    <div class="reveal">
-      {{- /* Ưu tiên ảnh cả nhóm (nhom.jpg). Chưa có thì hiện logo thương hiệu, không để khung trống. */ -}}
-      {{- $group := "" -}}
-      {{- range slice "jpg" "jpeg" "png" "webp" -}}
-        {{- if and (not $group) (fileExists (printf "static/images/team/nhom.%s" .)) -}}{{- $group = . -}}{{- end -}}
-      {{- end -}}
-      {{ if $group }}
-        {{ partial "photo.html" (dict "stem" "images/team/nhom" "alt" $t.story.groupAlt "class" "media--wide media--rounded") }}
-      {{ else }}
-        <div class="media media--wide media--rounded logo-panel">
-          <img src="{{ "images/logo.svg" | relURL }}" alt="Logo FixIT Student" width="132" height="132" decoding="async">
-        </div>
-      {{ end }}
-    </div>
+    <aside class="ab-spirit panel panel--tone aurora on-dark reveal" aria-label="Tinh thần FixIT">
+      <p class="ab-spirit-label">Tinh thần FixIT ↗</p>
+      <p class="ab-spirit-big">Ít thời gian loay hoay hơn<br>Nhiều thời gian cho điều bạn thích</p>
+      <div class="ab-spirit-foot">
+        <img src="{{ "images/logo.svg" | relURL }}" alt="" width="44" height="44" decoding="async">
+        <p><span>Hiểu lỗi</span><span>Hiểu bạn</span><span>Fix IT</span></p>
+      </div>
+    </aside>
   </div>
 </section>
 
-<section class="section section--border" aria-labelledby="mission-title">
+{{/* ===== 02 Tinh thần ===== */}}
+<section class="section section--border ab-section" id="our-values" aria-labelledby="values-title">
   <div class="container">
     <div class="section-head reveal">
-      <h2 id="mission-title">{{ $t.mission.title }}</h2>
+      <p class="ab-label"><span>02</span> / Những điều chúng mình tin</p>
+      <h2 class="display-sm" id="values-title">Làm việc có tâm<br>Sửa máy có cách</h2>
       <p class="section-lead">{{ $t.mission.text }}</p>
     </div>
-    <ol class="values">
-      {{ range $t.mission.values }}
-      <li class="value reveal">
-        <h3>{{ .title }}</h3>
-        <p>{{ .text }}</p>
+    <ul class="ab-values">
+      {{ range $i, $v := $t.mission.values }}
+      <li class="ab-value reveal">
+        <span class="ab-value-icon" aria-hidden="true">{{ index $icons $i }}</span>
+        <span class="ab-value-no">{{ printf "%02d" (add $i 1) }}</span>
+        <h3>{{ $v.title }}</h3>
+        <p>{{ $v.text }}</p>
       </li>
       {{ end }}
+    </ul>
+  </div>
+</section>
+
+{{/* ===== 03 Đội ngũ ===== */}}
+<section class="section section--border ab-section" id="meet-the-team" aria-labelledby="team-title">
+  <div class="container">
+    <div class="ab-team-head reveal">
+      <div>
+        <p class="ab-label"><span>03</span> / Mỗi người một mảnh ghép</p>
+        <h2 class="display-sm" id="team-title">Gặp những người bạn<br>đứng sau FixIT</h2>
+      </div>
+      <p class="ab-big-stat"><strong>{{ printf "%02d" $n }}</strong><span>thành viên cùng xây dựng một trải nghiệm tốt hơn</span></p>
+    </div>
+
+    <div class="ab-team">
+      {{ range $i, $m := $t.members }}{{ with $m }}
+      <article class="ab-member reveal" id="member-{{ .id }}">
+        <div class="ab-member-photo">
+          {{ partial "photo.html" (dict "stem" (printf "images/team/%s" .id) "alt" (printf "Ảnh của %s" .name) "class" "media--portrait") }}
+          <span class="ab-member-no">FixIT / {{ printf "%02d" (add $i 1) }}</span>
+        </div>
+        <div class="ab-member-body">
+          <p class="ab-member-role">{{ .role }}</p>
+          <h3 class="ab-member-name">{{ .name }}</h3>
+          <p class="ab-member-task">{{ .task }}</p>
+          {{ if not (hasPrefix .bio "[") }}<p class="ab-member-bio">{{ .bio }}</p>{{ end }}
+        </div>
+      </article>
+      {{ end }}{{ end }}
+    </div>
+    <p class="muted ab-team-note">{{ $t.team.note }}</p>
+
+    <aside class="ab-ribbon panel panel--tone aurora on-dark reveal" aria-label="Một đội ngũ nhỏ">
+      <span class="ab-ribbon-mark" aria-hidden="true">&amp;</span>
+      <div class="ab-ribbon-text">
+        <p class="ab-ribbon-label">Một đội ngũ nhỏ</p>
+        <h3>Nhiều góc nhìn<br>Cùng một mục tiêu</h3>
+      </div>
+      <a class="btn btn--primary" href="{{ "contact/" | relURL }}">Liên lạc chúng mình ↗</a>
+    </aside>
+  </div>
+</section>
+
+{{/* ===== 04 Cách làm việc ===== */}}
+<section class="section section--border ab-section" id="our-process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="ab-label"><span>04</span> / Rõ ràng trong từng bước</p>
+      <h2 class="display-sm" id="process-title">Không chỉ sửa xong<br>Mà còn hiểu rõ</h2>
+      <p class="section-lead">Mỗi yêu cầu đi qua ba bước, để bạn luôn biết máy đang được xử lý ra sao và vì sao.</p>
+    </div>
+    <ol class="ab-steps">
+      <li class="ab-step reveal"><span class="ab-step-no">01</span><h3>Xác nhận phạm vi</h3><p>Ghi lại sự cố, mục tiêu và dữ liệu cần sao lưu, rồi thống nhất cách làm cùng bạn trước khi bắt đầu.</p></li>
+      <li class="ab-step reveal"><span class="ab-step-no">02</span><h3>Thử đúng tình huống</h3><p>Xử lý theo thỏa thuận, rồi chạy lại đúng việc từng gây lỗi để chắc rằng máy đã ổn.</p></li>
+      <li class="ab-step reveal"><span class="ab-step-no">03</span><h3>Cùng kiểm tra kết quả</h3><p>Bạn tự thử lại việc đang làm dở, nhóm giải thích đã làm gì và dặn những điều cần để ý sau đó.</p></li>
+    </ol>
+    <aside class="notice reveal" aria-label="Phạm vi bảo hành">
+      <p class="notice-title">Phạm vi bảo hành 7 ngày</p>
+      <p>Lỗi phát sinh từ phía FixIT được sửa lại miễn phí. Với lỗi do phía khách hàng hoặc vấn đề mới, nhóm sẽ kiểm tra và báo trước một khoản phí nhỏ.</p>
+    </aside>
+  </div>
+</section>
+
+{{/* ===== Minh bạch về AI ===== */}}
+<section class="section section--border ab-section" aria-labelledby="ai-title">
+  <div class="container ab-ai">
+    <div class="reveal">
+      <p class="ab-label">Minh bạch từ cách làm</p>
+      <h2 class="display-sm" id="ai-title">{{ $t.ai.title }}</h2>
+      <p class="section-lead">{{ $t.ai.intro }}</p>
+      <p class="ab-check"><span aria-hidden="true">✓</span>{{ $t.ai.closing }}</p>
+    </div>
+    <ol class="ab-ai-list reveal">
+      {{ range $i, $it := $t.ai.items }}<li><span class="ab-ai-no">{{ printf "%02d" (add $i 1) }}</span><span class="ab-ai-text">{{ $it }}</span><span class="ab-ai-arrow" aria-hidden="true">↗</span></li>{{ end }}
     </ol>
   </div>
 </section>
 
-<section class="section section--border" aria-labelledby="team-title">
-  <div class="container">
-    <div class="section-head reveal">
-      <h2 id="team-title">{{ $t.team.title }}</h2>
-      <p class="section-lead">{{ $t.team.note }}</p>
-    </div>
-    <div class="team">
-      {{ range $t.members }}
-      <article class="member reveal">
-        {{ partial "photo.html" (dict "stem" (printf "images/team/%s" .id) "alt" (printf "Ảnh của %s" .name) "class" "media--portrait") }}
-        <h3 class="member-name">{{ .name }}</h3>
-        <p class="member-role">{{ .role }}</p>
-        <p class="member-task">{{ .task }}</p>
-        <p class="member-bio">{{ .bio }}</p>
-      </article>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
-<section class="band band--dark aurora on-dark" aria-labelledby="ai-title">
+{{/* ===== Kêu gọi hành động ===== */}}
+{{ $cta := slice "vscode-setup" "python-setup" "git-github" "windows-rescue" }}
+<section class="band band--accent aurora on-dark" aria-labelledby="about-cta-title">
   <div class="container band-inner">
     <div class="reveal">
-      <p class="eyebrow">Minh bạch</p>
-      <h2 class="display-sm" id="ai-title">{{ $t.ai.title }}</h2>
-      <p class="lead">{{ $t.ai.intro }}</p>
+      <p class="eyebrow">Việc học cứ tiếp tục</p>
+      <h2 class="display-sm" id="about-cta-title">Máy có chút khó ở?<br>Để FixIT cùng gỡ rối</h2>
+      <p class="lead">Chọn cách bạn muốn bắt đầu: tự chẩn đoán trước, hoặc xem luôn các dịch vụ và bảng giá.</p>
+      <div class="pack-cta-actions">
+        <a class="btn btn--primary" href="{{ "find-your-fix/" | relURL }}">Tìm cách sửa máy ↗</a>
+        <a class="btn btn--secondary" href="{{ "services/" | relURL }}">Xem dịch vụ và bảng giá</a>
+      </div>
     </div>
-    <div class="reveal">
-      <ul class="ai-list">
-        {{ range $t.ai.items }}<li>{{ . }}</li>{{ end }}
-      </ul>
-      <p class="muted-on-dark">{{ $t.ai.closing }}</p>
+    <div class="pack-strip reveal" aria-hidden="true">
+      {{ range $cta }}{{ $sp := site.GetPage (printf "/services/%s" .) }}<figure class="pack-strip-item"><img src="{{ partial "service-image.html" $sp | relURL }}" alt="" loading="lazy" decoding="async"></figure>{{ end }}
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container narrow reveal">
-    <p class="muted">Đây là sản phẩm học tập ({{ site.Params.course }}). Giỏ hàng, quy trình hẹn gặp và thanh toán chỉ là mô phỏng, không thu tiền và không lưu thông tin nhạy cảm thật.</p>
+    <p class="muted">Đồ án 1 – CSC00006 · Sản phẩm học tập. Giỏ hàng, quy trình hẹn gặp và thanh toán chỉ là mô phỏng, không thu tiền và không lưu thông tin nhạy cảm thật.</p>
   </div>
 </section>
 {{ end }}

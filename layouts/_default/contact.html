@@ -3,14 +3,47 @@
 <section class="section section--tight">
   <div class="container split">
     <div class="split-main">
+      <h2 class="h2-sm">Bạn đang gặp chuyện gì?</h2>
+      <p class="muted topics-note">Chọn một nhóm sự cố, mục "Loại sự cố" trong biểu mẫu bên dưới sẽ được chọn sẵn cho bạn.</p>
+      <div class="topics">
+        {{ range (slice
+          (dict "slug" "python-setup" "topic" "Môi trường lập trình" "text" "Cài Python, C/C++ và VS Code, sửa lỗi chạy không được code.")
+          (dict "slug" "git-github" "topic" "Git / GitHub" "text" "Lỗi push, pull, xác thực hoặc xung đột khi gộp code.")
+          (dict "slug" "windows-rescue" "topic" "Cài Win và tối ưu máy" "text" "Máy chậm, lỗi khởi động hoặc cần cài lại Windows.")
+          (dict "slug" "tech-consultation" "topic" "Sự cố khác" "text" "Chưa biết gọi tên lỗi? Cứ kể cho chúng mình nghe.")) }}
+        {{ $sp := site.GetPage (printf "/services/%s" .slug) }}
+        <button class="topic-tile reveal" type="button" data-topic="{{ .topic }}">
+          <span class="topic-img"><img src="{{ partial "service-image.html" $sp | relURL }}" alt="" loading="lazy" decoding="async"></span>
+          <span class="topic-name">{{ .topic }}</span>
+          <span class="topic-text">{{ .text }}</span>
+        </button>
+        {{ end }}
+      </div>
+
       <h2 class="h2-sm">Ba cách để được hỗ trợ</h2>
       <div class="ways">
         <article class="way reveal"><h3>Nhắn Zalo</h3><p>Gửi ảnh lỗi để nhận chẩn đoán sơ bộ. Thời gian phản hồi khoảng 5 – 15 phút (bản demo).</p></article>
-        <article class="way reveal"><h3>Gặp trực tiếp</h3><p>CS1: Tầng 1 tòa nhà I, 227 Nguyễn Văn Cừ, Q.5.<br>CS2: sảnh Thư viện, Khu đô thị ĐHQG-HCM, TP. Thủ Đức.</p></article>
+        <article class="way reveal"><h3>Gặp trực tiếp</h3><p>Hẹn trước qua Zalo rồi gặp tại một trong hai cơ sở ở phần "Gặp ở trường" bên dưới.</p></article>
         <article class="way reveal"><h3>Hỗ trợ từ xa</h3><p>Qua UltraViewer hoặc Google Meet, dành cho lỗi phần mềm.</p></article>
       </div>
 
-      <h2 class="h2-sm">Gửi yêu cầu hỗ trợ</h2>
+      <h2 class="h2-sm">Gặp ở trường</h2>
+      <div class="campuses">
+        <article class="campus reveal">
+          <p class="campus-top"><span class="campus-no">01</span> <span class="tag">CS1</span></p>
+          <h3>Cơ sở 1, Quận 5</h3>
+          <p>Tầng 1 tòa nhà I, 227 Nguyễn Văn Cừ, Q.5.</p>
+          <button class="btn btn--secondary btn--small" type="button" data-place="CS1 (Nguyễn Văn Cừ, Q.5)">Chọn cơ sở này trong biểu mẫu</button>
+        </article>
+        <article class="campus reveal">
+          <p class="campus-top"><span class="campus-no">02</span> <span class="tag">CS2</span></p>
+          <h3>Cơ sở 2, Thủ Đức</h3>
+          <p>Sảnh Thư viện, Khu đô thị ĐHQG-HCM, TP. Thủ Đức. Hẹn trước qua Zalo.</p>
+          <button class="btn btn--secondary btn--small" type="button" data-place="CS2 (Khu đô thị ĐHQG-HCM, Thủ Đức)">Chọn cơ sở này trong biểu mẫu</button>
+        </article>
+      </div>
+
+      <h2 class="h2-sm" id="request">Gửi yêu cầu hỗ trợ</h2>
       <p class="muted">Biểu mẫu này chỉ là bản demo: sau khi gửi bạn nhận một mã yêu cầu mẫu. Website không lưu hay gửi dữ liệu đi đâu.</p>
       <form class="form" data-request-form novalidate>
         <div class="field">
