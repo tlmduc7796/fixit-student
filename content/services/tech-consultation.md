@@ -1,7 +1,7 @@
 ---
 title: "Tech Consultation"
 weight: 80
-price: 39000
+price: 99000
 duration: "60 phút"
 group: "software"
 groupLabel: "Phần mềm"

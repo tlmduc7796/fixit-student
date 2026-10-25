@@ -1,7 +1,7 @@
 ---
 title: "Data Backup"
 weight: 70
-price: 29000
+price: 59000
 duration: "45 – 60 phút"
 group: "hardware"
 groupLabel: "Phần cứng & Máy tính"
