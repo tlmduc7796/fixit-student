@@ -1,0 +1,14 @@
+{{- /* Liên hệ: một đoạn tin nhắn mẫu hiện lần lượt, có dấu "đang soạn" trước câu trả lời, rồi phát lại. */ -}}
+{{- $py := site.GetPage "/services/python-setup" -}}
+<div class="hv-panel hv-chat" data-hv-cycle data-hv-interval="12500">
+  <div class="hv-head"><span><span class="hv-live"></span>Tin nhắn với FixIT</span><span>Phản hồi 5 – 15 phút</span></div>
+  <div class="hv-body">
+    <div class="hv-scene is-on">
+      <p class="hv-msg hv-msg--me hv-t1">Máy mình gõ python mà nó lại mở Microsoft Store</p>
+      <div class="hv-msg hv-msg--me hv-shot hv-t2"><span class="hv-shot-bar"></span><span class="hv-shot-line"></span><span class="hv-shot-line hv-shot-line--short"></span><span class="hv-shot-cap">Ảnh màn hình lỗi</span></div>
+      <p class="hv-typing hv-t3"><span></span><span></span><span></span></p>
+      <p class="hv-msg hv-msg--fx hv-t4">Do Python chưa có trong PATH. Hẹn bạn 18:00 ở CS1 nhé, khoảng {{ $py.Params.duration }} là xong.</p>
+      <p class="hv-msg hv-msg--me hv-t5">Ok, cảm ơn FixIT</p>
+    </div>
+  </div>
+</div>

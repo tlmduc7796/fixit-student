@@ -27,8 +27,8 @@ groups:
   - title: "Giá, gói và thanh toán"
     items:
       - q: "Student Pack gồm những gì?"
-        a: "Gói 6 dịch vụ: VS Code Setup, Python Environment Setup, C/C++ Development Setup, Git & GitHub Setup, Laptop Health Check và Data Backup. Giá 149.000đ thay vì 204.000đ khi mua lẻ."
-        keywords: ["student pack", "goi", "combo", "tron bo", "6 dich vu", "goi sinh vien", "tiet kiem", "149"]
+        a: "Gói 6 dịch vụ: VS Code Setup, Python Environment Setup, C/C++ Development Setup, Git & GitHub Setup, Laptop Health Check và Data Backup. Giá 159.000đ thay vì 204.000đ khi mua lẻ."
+        keywords: ["student pack", "goi", "combo", "tron bo", "6 dich vu", "goi sinh vien", "tiet kiem", "159"]
         link: "/student-pack/"
         linkLabel: "Xem Student Pack"
       - q: "Thanh toán như thế nào?"

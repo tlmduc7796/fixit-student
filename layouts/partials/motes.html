@@ -1,0 +1,11 @@
+{{- /* Hạt sáng tím trôi chậm lên trên, dùng chung cho hero trang chủ và đầu các trang con.
+       .n: số hạt. Vị trí, kích thước và nhịp được tính từ số thứ tự,
+       nên mỗi lần dựng web đều giống nhau. Cứ hạt thứ 5 là một hạt lớn, hơi mờ để tạo chiều sâu. */ -}}
+{{- $n := .n | default 12 -}}
+<div class="hero-motes" aria-hidden="true">
+  {{- range seq $n -}}
+  {{- $size := add 3 (mod . 4) -}}
+  {{- if eq (mod . 5) 0 }}{{ $size = 9 }}{{ end -}}
+  <span{{ if eq (mod . 5) 0 }} class="mote--big"{{ end }} style="--x:{{ mod (mul . 37) 97 }};--s:{{ $size }}px;--t:{{ add 13 (mod (mul . 5) 9) }}s;--d:-{{ mod (mul . 7) 13 }}s"></span>
+  {{- end -}}
+</div>

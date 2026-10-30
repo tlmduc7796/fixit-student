@@ -1,0 +1,19 @@
+{{- /* Student Pack: sáu thẻ dịch vụ bay vào gói, rồi phát lại.
+       Giá combo không nhắc lại ở đây vì khối "Giá combo" ngay bên dưới đã hiện rõ. */ -}}
+{{- $pack := site.GetPage "/student-pack" -}}
+{{- $pages := slice -}}
+{{- range $pack.Params.includes -}}
+  {{- $pages = $pages | append (site.GetPage (printf "/services/%s" .)) -}}
+{{- end -}}
+<div class="hv-panel hv-pack" data-hv-cycle data-hv-interval="11000">
+  <div class="hv-head"><span><span class="hv-live"></span>Student Pack</span><span>{{ len $pages }} dịch vụ trong một gói</span></div>
+  <div class="hv-body">
+    <div class="hv-scene is-on">
+      <ul class="hv-pack-grid">
+        {{- range $pages }}
+        <li><span class="hv-chip-name">{{ replaceRE " (Environment |Development )?Setup$" "" .Title }}</span><span class="hv-chip-price">{{ partial "price.html" . }}</span></li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+</div>

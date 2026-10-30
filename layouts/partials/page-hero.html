@@ -1,15 +1,27 @@
-{{- /* Header của trang con: nền gradient động theo tông màu của trang (body[data-tone]),
-       có thể phủ thêm video nền (site.Params.pageHeroVideo) */ -}}
-<section class="page-hero aurora on-dark">
+{{- /* Header của trang con.
+       .title, .lead, .eyebrow : phần chữ
+       .no     : số thứ tự của trang trên menu, hiện thành một nhãn nhỏ trước eyebrow (ví dụ "01")
+       .visual : tên hình động bên phải, lấy từ partials/hero-visual/<tên>.html
+       Tiêu đề hiện từng từ (data-split, xử lý trong main.js), nền có hạt sáng trôi lên.
+       Vẫn có thể phủ thêm video nền chung (site.Params.pageHeroVideo). */ -}}
+<section class="page-hero aurora on-dark{{ with .visual }} page-hero--split{{ end }}">
   {{- if and site.Params.pageHeroVideo site.Params.videoUrl }}
   <video class="hero-video hero-video--soft" autoplay muted loop playsinline preload="metadata" aria-hidden="true" data-hero-video>
     <source src="{{ site.Params.videoUrl }}" type="video/mp4">
   </video>
   {{- end }}
+  {{ partial "motes.html" (dict "n" 12) }}
   <div class="container page-hero-inner">
-    {{ with .eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
-    <h1 class="display">{{ .title }}</h1>
-    {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
+    <div class="ph-copy">
+      {{- if or .eyebrow .no }}
+      <p class="eyebrow">{{ with .no }}<span class="ph-no">{{ . }}</span>{{ end }}{{ .eyebrow }}</p>
+      {{- end }}
+      <h1 class="display" data-split>{{ .title }}</h1>
+      {{ with .lead }}<p class="lead">{{ . }}</p>{{ end }}
+    </div>
+    {{- with .visual }}
+    <div class="ph-visual" aria-hidden="true">{{ partial (printf "hero-visual/%s.html" .) $ }}</div>
+    {{- end }}
   </div>
   {{- if and site.Params.pageHeroVideo site.Params.videoUrl }}
   <button class="btn btn--outline-dark btn--small hero-toggle" type="button" aria-pressed="false" data-hero-toggle>Tạm dừng video</button>

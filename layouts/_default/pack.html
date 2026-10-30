@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "page-hero.html" (dict "title" .Title "lead" .Params.lead "eyebrow" "Gói trọn bộ") }}
+{{ partial "page-hero.html" (dict "title" .Title "lead" .Params.lead "eyebrow" "Gói trọn bộ" "no" "03" "visual" "pack") }}
 {{ $sum := 0 }}
 {{ range .Params.includes }}
   {{ $s := site.GetPage (printf "/services/%s" .) }}

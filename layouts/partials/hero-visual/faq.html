@@ -1,0 +1,15 @@
+{{- /* FAQ: lần lượt hỏi và đáp ba câu lấy từ data/faq.yaml (câu trả lời được rút gọn). */ -}}
+{{- $items := (index site.Data.faq.groups 0).items -}}
+{{- $pick := slice (index $items 0) (index $items 1) (index $items 3) -}}
+<div class="hv-panel hv-chat hv-chat--faq" data-hv-cycle data-hv-interval="6500">
+  <div class="hv-head"><span><span class="hv-live"></span>Hỏi nhanh</span><span><span data-hv-index>1</span> / {{ len $pick }}</span></div>
+  <div class="hv-body">
+    {{- range $i, $it := $pick }}
+    <div class="hv-scene{{ if eq $i 0 }} is-on{{ end }}">
+      <p class="hv-msg hv-msg--me hv-t1">{{ $it.q }}</p>
+      <p class="hv-typing hv-t2"><span></span><span></span><span></span></p>
+      <p class="hv-msg hv-msg--fx hv-t3">{{ partial "fill.html" $it.a | plainify | truncate 120 }}</p>
+    </div>
+    {{- end }}
+  </div>
+</div>

@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "page-hero.html" (dict "title" .Title "lead" .Params.lead "eyebrow" "Chẩn đoán nhanh") }}
+{{ partial "page-hero.html" (dict "title" .Title "lead" .Params.lead "eyebrow" "Chẩn đoán nhanh" "no" "02" "visual" "fix") }}
 {{ $services := (site.GetPage "/services").Pages.ByWeight }}
 
 <section class="section section--tight">

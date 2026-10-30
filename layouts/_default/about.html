@@ -5,10 +5,11 @@
 
 {{/* ===== Hero ===== */}}
 <section class="page-hero ab-hero aurora on-dark" aria-labelledby="about-title">
+  {{ partial "motes.html" (dict "n" 14) }}
   <div class="container ab-hero-grid">
     <div class="ab-hero-copy">
-      <p class="eyebrow">Về FixIT Student</p>
-      <h1 class="display" id="about-title">Cũng là sinh viên<br>Nên chúng mình<br>hiểu bạn</h1>
+      <p class="eyebrow"><span class="ph-no">04</span>Về FixIT Student</p>
+      <h1 class="display ab-title" id="about-title"><span class="ab-line" style="--i:0">Cũng là sinh viên</span><br><span class="ab-line" style="--i:1">Nên chúng mình</span><br><span class="ab-line" style="--i:2">hiểu bạn</span></h1>
       <p class="lead">{{ .Params.lead }} Chúng mình từng ngồi trước những dòng báo lỗi lúc deadline đang đến gần, nên biết một người bạn cùng gỡ rối có ích thế nào.</p>
       <div class="ab-actions">
         <a class="btn btn--primary" href="#meet-the-team">Gặp đội ngũ FixIT ↗</a>
@@ -109,12 +110,12 @@
           <p class="ab-member-role">{{ .role }}</p>
           <h3 class="ab-member-name">{{ .name }}</h3>
           <p class="ab-member-task">{{ .task }}</p>
-          {{ if not (hasPrefix .bio "[") }}<p class="ab-member-bio">{{ .bio }}</p>{{ end }}
+          {{ with .bio }}{{ if not (hasPrefix . "[") }}<p class="ab-member-bio">{{ . }}</p>{{ end }}{{ end }}
         </div>
       </article>
       {{ end }}{{ end }}
     </div>
-    <p class="muted ab-team-note">{{ $t.team.note }}</p>
+    {{ with $t.team.note }}<p class="muted ab-team-note">{{ . }}</p>{{ end }}
 
     <aside class="ab-ribbon panel panel--tone aurora on-dark reveal" aria-label="Một đội ngũ nhỏ">
       <span class="ab-ribbon-mark" aria-hidden="true">&amp;</span>

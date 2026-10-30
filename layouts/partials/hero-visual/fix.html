@@ -1,0 +1,21 @@
+{{- /* Find Your Fix: sơ đồ "triệu chứng, nguyên nhân, dịch vụ" vẽ dần, đổi qua 3 ví dụ.
+       Tên và giá dịch vụ lấy từ trang dịch vụ nên luôn khớp với bảng giá. */ -}}
+{{- $scenes := slice
+  (dict "sym" "Gõ python thì máy mở Microsoft Store" "cause" "Python chưa được thêm vào PATH" "svc" "python-setup")
+  (dict "sym" "git push báo bị từ chối" "cause" "GitHub chưa được xác thực bằng SSH" "svc" "git-github")
+  (dict "sym" "Máy khởi động mất hơn 2 phút" "cause" "Quá nhiều ứng dụng chạy cùng Windows" "svc" "laptop-health") -}}
+<div class="hv-panel hv-flow" data-hv-cycle data-hv-interval="5600">
+  <div class="hv-head"><span><span class="hv-live"></span>Chẩn đoán mẫu</span><span><span data-hv-index>1</span> / {{ len $scenes }}</span></div>
+  <div class="hv-body">
+    {{- range $i, $s := $scenes }}
+    {{- $p := site.GetPage (printf "/services/%s" $s.svc) }}
+    <div class="hv-scene{{ if eq $i 0 }} is-on{{ end }}">
+      <div class="hv-node"><span class="hv-node-k">Triệu chứng</span><span class="hv-node-v">{{ $s.sym }}</span></div>
+      <span class="hv-link"></span>
+      <div class="hv-node"><span class="hv-node-k">Nguyên nhân</span><span class="hv-node-v">{{ $s.cause }}</span></div>
+      <span class="hv-link"></span>
+      <div class="hv-node hv-node--fix"><span class="hv-node-k">Dịch vụ phù hợp</span><span class="hv-node-v">{{ $p.Title }}</span><span class="hv-node-p">{{ partial "price.html" $p }} · {{ $p.Params.duration }}</span></div>
+    </div>
+    {{- end }}
+  </div>
+</div>

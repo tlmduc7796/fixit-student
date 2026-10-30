@@ -12,6 +12,7 @@
     <source src="{{ . }}" type="video/mp4">
   </video>
   {{ end }}
+  {{ partial "motes.html" (dict "n" 22) }}
   <div class="container hero-grid">
     <div class="hero-inner">
       <p class="eyebrow">Dịch vụ công nghệ dành cho sinh viên</p>
@@ -34,15 +35,21 @@
     </div>
     <div class="term" aria-hidden="true">
       <div class="term-bar"><span></span><span></span><span></span></div>
-      <pre class="term-body"><span class="t-dim">$</span> python main.py
-<span class="t-err">Traceback (most recent call last):
-  File "main.py", line 1, in &lt;module&gt;
-ModuleNotFoundError: No module named 'numpy'</span>
-
-<span class="t-dim">$</span> fixit --setup python
-<span class="t-ok">Tạo virtual environment... xong
-Cài thư viện cần thiết... xong
-Chạy thử chương trình... thành công</span></pre>
+      {{- /* Mỗi dòng là một .tl. Script (main.js) tự gõ các lệnh (.tc) rồi hiện từng dòng kết quả;
+             data-delay là thời gian chờ (ms) trước khi dòng đó xuất hiện. Không có JS hoặc bật
+             "giảm chuyển động" thì tất cả hiện sẵn. */ -}}
+      <div class="term-body" data-term>
+        <div class="tl" data-delay="700"><span class="t-dim">$</span> <span class="tc">python main.py</span></div>
+        <div class="tl t-err" data-delay="350">Traceback (most recent call last):</div>
+        <div class="tl t-err" data-delay="120">  File "main.py", line 1, in &lt;module&gt;</div>
+        <div class="tl t-err" data-delay="120">ModuleNotFoundError: No module named 'numpy'</div>
+        <div class="tl" data-delay="600"></div>
+        <div class="tl" data-delay="200"><span class="t-dim">$</span> <span class="tc">fixit --setup python</span></div>
+        <div class="tl t-ok" data-delay="700">Tạo virtual environment... xong</div>
+        <div class="tl t-ok" data-delay="700">Cài thư viện cần thiết... xong</div>
+        <div class="tl t-ok t-done" data-delay="700">Chạy thử chương trình... thành công</div>
+        <div class="tl" data-delay="500"><span class="t-dim">$</span> </div>
+      </div>
     </div>
   </div>
   {{ if site.Params.videoUrl }}

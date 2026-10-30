@@ -1,0 +1,17 @@
+{{- /* Services: bảng giá trượt chậm từ dưới lên, dòng đi qua giữa khung được làm nổi.
+       Danh sách được in hai lần nối tiếp nhau để vòng lặp liền mạch. */ -}}
+{{- $services := (site.GetPage "/services").Pages.ByWeight -}}
+<div class="hv-panel hv-board">
+  <div class="hv-head"><span><span class="hv-live"></span>Bảng giá sinh viên</span><span>{{ len $services }} dịch vụ</span></div>
+  <div class="hv-board-view">
+    <div class="hv-board-track">
+      {{- range seq 2 }}
+      <ul class="hv-board-list">
+        {{- range $services }}
+        <li><span class="hv-b-name">{{ .Title }}</span><span class="hv-b-time">{{ .Params.duration }}</span><span class="hv-b-price">{{ partial "price.html" . }}</span></li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </div>
+  </div>
+</div>

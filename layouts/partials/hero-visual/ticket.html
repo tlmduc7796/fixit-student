@@ -1,0 +1,22 @@
+{{- /* Giỏ hàng và Tra cứu đơn: một vé hẹn mẫu, thanh tiến trình chạy qua 3 trạng thái rồi phát lại.
+       Mã FIX-DEMO trùng với mã thử ở trang Tra cứu đơn. */ -}}
+{{- $py := site.GetPage "/services/python-setup" -}}
+<div class="hv-panel hv-ticket" data-hv-cycle data-hv-interval="8000">
+  <div class="hv-head"><span><span class="hv-live"></span>Vé hẹn mẫu</span><span class="hv-code">FIX-DEMO</span></div>
+  <div class="hv-body">
+    <div class="hv-scene is-on">
+      <dl class="hv-ticket-info">
+        <div><dt>Dịch vụ</dt><dd>{{ $py.Title }}</dd></div>
+        <div><dt>Thời gian</dt><dd>Thứ 3, 18:00</dd></div>
+        <div><dt>Địa điểm</dt><dd>CS1, Quận 5</dd></div>
+        <div><dt>Thanh toán</dt><dd>{{ partial "price.html" $py }}, sau khi máy chạy ổn</dd></div>
+      </dl>
+      <div class="hv-progress"><span></span></div>
+      <ol class="hv-steps">
+        <li>Đã đặt lịch</li>
+        <li>Đang xử lý</li>
+        <li>Hoàn tất</li>
+      </ol>
+    </div>
+  </div>
+</div>
